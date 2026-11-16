@@ -30,7 +30,11 @@ Railway handled database backups. On a VPS we must provide our own, off the serv
 - A backup counts only after a restore succeeds: monthly test ([runbook](../../runbooks/monthly-restore-test.md)).
 - Restores go to a new database name first, never over the live one. Only exception: rebuilding a lost server ([server-lost](../../runbooks/server-lost.md)), where the database does not exist yet.
 - `restic forget --prune` and deleting snapshots are tier 3.
-- Two bucket keys: the **server key** can write and read but not delete (append-only), so a compromised server cannot wipe backups; the **owner's prune key** can delete and is kept off the server. Pruning runs from the owner's machine, monthly.
+- **Protecting backups from a compromised server.** A key that simply cannot delete does not work with restic: restic writes and removes lock files on every run, and a no-delete key fails or leaves stale locks. Use instead:
+  1. **Bucket versioning** (or the provider's equivalent, such as Backblaze B2 "hide" plus a lifecycle rule) with old versions kept for at least 30 days. The server key may delete, but a deletion only hides a version, which the owner can recover. Where the provider supports **object lock** with a retention period, it can add protection, but restic does not manage locks itself, so test it before relying on it.
+  2. A **separate owner key** with full rights, kept off the server, for `forget --prune`, `check` and clearing stale locks. Pruning runs from the owner's machine, monthly.
+  3. Alternative if the provider cannot do versioning: an append-only restic endpoint (`rest-server --append-only` or `rclone serve restic --append-only`) on a separate small host. More moving parts; consider only if needed.
+- Prove it in the pilot (test T18): with the server key, delete a snapshot's files, then recover them with the owner key.
 - The restic password lives outside the server too (ADR 0007). If it is lost, the backups cannot be opened.
 
 ## Consequences

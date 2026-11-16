@@ -17,7 +17,7 @@ Use when the VPS is gone, corrupted, compromised or unrecoverable. Highest tier:
    1. **[T2]** Restore its database from the latest snapshot: `backup/restore-school.sh <slug> latest --target db_<slug>` (allowed to target the live name here only because the database does not exist yet).
    2. **[T2]** Restore its `.env` from restic (or regenerate from the vault).
    3. **[T2]** Start `school-<slug>`, check login.
-5. **[T1]** Update DNS if the IP changed (lower TTLs in advance make this faster).
+5. **[T2]** Update DNS if the IP changed. With the standing 600-second TTL ([Hostinger KVM plan](../docs/hostinger-kvm.md)), the switch takes effect within about 10 minutes.
 6. **[T1]** Re-enable monitoring and the external uptime check.
 7. **[T2]** Run a full backup on the new server.
 

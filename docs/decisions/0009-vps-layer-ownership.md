@@ -17,6 +17,7 @@ Several tools can configure a Hostinger VPS: Hostinger Agent Skills and MCP, vps
 
 - **vps-forge** and **vps-setup-skill** are references. Run them only on a disposable VPS; copy useful safeguards (such as verifying key login before disabling passwords, and lockout protection) into our Ansible roles.
 - DevSec's Nginx role is not used (we use Caddy).
+- **Named exception:** Hostinger's malware scanner (Monarx agent, if adopted under D13) is installed from hPanel and runs inside the server. Record it in `ansible/inventory/<server>` (for example `hostinger_malware_scanner: true`) so drift checks expect it, and never let it delete files automatically on school servers.
 - Hostinger snapshot and backup **restores** overwrite the whole VPS and are tier 3.
 - Hostinger firewall and UFW carry identical rules.
 

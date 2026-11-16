@@ -5,7 +5,7 @@ Decisions the owner still needs to make before the pilot server is built. Each l
 | # | Decision | Options | Suggested default | Affects |
 |---|---|---|---|---|
 | D1 | Approve design B | B (app per school, shared Postgres) / schema per school / full stack per school | B | [ADR 0001](decisions/0001-design-b-app-per-school-shared-postgres.md) |
-| D2 | Backup storage provider | Backblaze B2 / Cloudflare R2 / Wasabi / second VPS | Any S3-compatible bucket in a region you accept for school data | [ADR 0004](decisions/0004-backups-restic-s3.md) |
+| D2 | Backup storage provider | Backblaze B2 / Cloudflare R2 / Wasabi / second VPS | An S3-compatible bucket in a region you accept for school data **that supports versioning (or hide + lifecycle) and per-bucket keys** | [ADR 0004](decisions/0004-backups-restic-s3.md) |
 | D3 | Who holds the restic key and Ansible Vault password | Owner only / owner + one named deputy | Owner + one deputy, stored in a password manager and on paper in a safe place | [ADR 0007](decisions/0007-secrets-management.md) |
 | D4 | School domains | Subdomains of one product domain / each school's own domain / both | Subdomains first; own domains later via Caddy on-demand TLS | [ADR 0005](decisions/0005-caddy-reverse-proxy.md) |
 | D5 | Pilot server size | KVM 2 / KVM 4 | KVM 2 for the pilot | [capacity](capacity.md) |

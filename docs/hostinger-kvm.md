@@ -77,7 +77,13 @@ Rules for several servers:
 - Spread schools so no server holds all large schools.
 - Move schools between servers with the [move-school runbook](../runbooks/move-school.md).
 
-## 8. Account security
+## 8. DNS
+
+- Standing TTL for every school domain and the server hostname: **600 seconds** (10 minutes). Short enough that [server-lost](../runbooks/server-lost.md) and [move-school](../runbooks/move-school.md) switch quickly, long enough to avoid needless lookups.
+- Lower to 300 seconds a day before a planned move; raise back afterwards.
+- Keep DNS with a provider whose account also has two-factor authentication; whoever controls DNS controls the schools' traffic.
+
+## 9. Account security
 
 - Two-factor authentication on the Hostinger account for every person with access.
 - Owner and one named deputy only (matches ADR 0007 key holders).
@@ -85,7 +91,7 @@ Rules for several servers:
 - Invoices and renewal alerts go to a shared team mailbox, not one person's inbox.
 - hPanel SSH keys: add the admin public keys there for console recovery; Ansible manages the keys inside the server.
 
-## 9. Malware scanning
+## 10. Malware scanning
 
 Hostinger's VPS Malware Scanner uses the Monarx agent:
 
@@ -93,9 +99,9 @@ Hostinger's VPS Malware Scanner uses the Monarx agent:
 - Detection is included; **automatic cleanup needs a paid Monarx licence**.
 - It scans files on disk, **not database contents**.
 
-Plan (open decision D13): install the detection agent on the pilot after hardening, and review results weekly. Treat any finding on a school server as an incident: do not just delete the file; check how it got there, rotate secrets, consider rebuilding from the repository and backups. It is an extra layer, not a replacement for hardening and updates.
+Plan (open decision D13): install the detection agent (a named exception to layer ownership, see [ADR 0009](decisions/0009-vps-layer-ownership.md)) on the pilot after hardening, and review results weekly. Treat any finding on a school server as an incident: do not just delete the file; check how it got there, rotate secrets, consider rebuilding from the repository and backups. It is an extra layer, not a replacement for hardening and updates.
 
-## 10. Hostinger metrics vs our monitoring
+## 11. Hostinger metrics vs our monitoring
 
 hPanel shows CPU, memory, disk and network. Useful for a quick look and for choosing when to upgrade, but alerts come from our monitoring ([ADR 0006](decisions/0006-lightweight-monitoring.md)), which knows about schools and backups.
 
@@ -105,4 +111,4 @@ hPanel shows CPU, memory, disk and network. Useful for a quick look and for choo
 - [Hostinger: upgrade a VPS](https://www.hostinger.com/support/1583229-how-to-upgrade-a-vps-server/)
 - [Hostinger: server locations](https://www.hostinger.com/support/1583267-where-are-your-servers-located)
 - [Hostinger: VPS malware scanner](https://www.hostinger.com/support/8450363-hostinger-vps-malware-scanner/)
-- [Hostinger: managed VPS firewall](https://www.hostinger.com/ua/support/?p=17) (Ukrainian page; check the English version in hPanel help)
+- [Hostinger: managed VPS firewall](https://www.hostinger.com/support/8172641-how-to-use-a-managed-vps-firewall-at-hostinger/)

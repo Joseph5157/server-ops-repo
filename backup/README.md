@@ -5,7 +5,7 @@ Backup, restore and verification scripts. Nothing here has been written yet. Des
 ```
 backup/
 ├── backup-all.sh          # pg_dump each school database separately → restic
-├── restore-school.sh      # restore one school's database into a NEW database name
+├── restore-school.sh      # restore one school's database into a NEW database name (pg_restore --no-owner --role=app_<slug>)
 ├── verify-latest.sh       # restore latest snapshot to a scratch database and run checks
 ├── backup.env.example     # RESTIC_REPOSITORY, S3 keys, RESTIC_PASSWORD_FILE (placeholders)
 └── README.md
@@ -27,7 +27,7 @@ School logos are stored in the database (`SchoolLogo.image`), so the database du
 - Dumps go straight into restic; no unencrypted dump is left on disk.
 - A run that fails sends a Telegram alert.
 - Monitoring alerts if the newest snapshot is older than 26 hours.
-- `restic forget --prune` is tier 3: owner runs it.
+- `restic forget --prune` is tier 3: owner runs it with the owner key, kept off the server. The server key can delete (restic needs to remove lock files), so the bucket keeps old versions for 30+ days to undo any deletion ([ADR 0004](../docs/decisions/0004-backups-restic-s3.md)).
 - Restores always go to a new database name first, never over the live one (exception: rebuilding a lost server, where it does not exist yet).
 
 ## Inspiration (patterns only, not adopted)

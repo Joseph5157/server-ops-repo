@@ -25,7 +25,7 @@ Each wave needs owner approval.
 2. **[T2]** Fresh backup of this school: `backup/backup-all.sh --only db_<slug>` (planned). Confirm the snapshot exists.
 3. **[T1]** Change `release:` for this school in `schools/<server>.yml` on a branch; draft PR.
 4. **[T0]** Dry run: `ansible-playbook ... playbooks/school-release.yml -e slug=<slug> --check --diff`.
-5. **[T2]** Apply. The playbook should pull the image, run `migrate`, then restart `web` and the jobs.
+5. **[T1]** Pause the school's Uptime Kuma checks for the restart. **[T2]** Apply: the playbook pulls the image, runs `migrate`, then restarts `web` and the jobs. **[T1]** Resume the checks once the login page answers.
 6. **[T0]** Verify (below). If anything fails, roll back straight away.
 
 ## Verify

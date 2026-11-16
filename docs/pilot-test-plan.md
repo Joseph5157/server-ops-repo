@@ -31,6 +31,7 @@ Status: draft. Run on the pilot VPS with **fictional demo data only**. No real s
 | T15 | Firewall layers | From outside only 22, 80, 443 answer; Hostinger firewall and UFW rules match | Yes |
 | T16 | Move a school | One fictional school moved to a second disposable VPS with [move-school](../runbooks/move-school.md), data intact | No |
 | T17 | Plan upgrade (optional) | Measure actual downtime of a KVM plan upgrade on the disposable VPS | No |
+| T18 | Backups survive a compromised server | Using only the server key, delete a school's snapshot files; recover them with the owner key from bucket versions; `restic check` passes | Yes |
 
 ## Exit criteria
 
