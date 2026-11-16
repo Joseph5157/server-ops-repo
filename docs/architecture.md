@@ -35,7 +35,7 @@ Status: draft, based on [ADR 0001](decisions/0001-design-b-app-per-school-shared
 
 | Component | One per | Notes |
 |---|---|---|
-| Ubuntu LTS + DevSec hardening | server | UFW allows 22 (restricted), 80, 443 |
+| Ubuntu LTS + DevSec hardening | server | UFW and the Hostinger firewall both allow only 22 (restricted), 80, 443 ([Hostinger KVM plan](hostinger-kvm.md)) |
 | Docker Engine + Compose | server | |
 | Caddy | server | Routes from `schools/<server>.yml` ([ADR 0005](decisions/0005-caddy-reverse-proxy.md)) |
 | PostgreSQL | server | One database and one login per school ([ADR 0003](decisions/0003-stay-on-postgresql.md)) |

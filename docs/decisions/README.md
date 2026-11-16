@@ -10,5 +10,6 @@
 | [0006](0006-lightweight-monitoring.md) | Lightweight monitoring first | Proposed |
 | [0007](0007-secrets-management.md) | Secrets management | Proposed |
 | [0008](0008-ai-agent-operating-tiers.md) | Approval tiers for AI agents | Proposed |
+| [0009](0009-vps-layer-ownership.md) | One owner per server layer; VPS tools as references | Proposed |
 
 Template for a new record: copy the headings of any record above (Status, Date, Context, Decision, Consequences). Only the owner changes a status to Approved.

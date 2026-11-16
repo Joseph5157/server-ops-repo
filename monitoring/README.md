@@ -21,6 +21,7 @@ monitoring/
 | Newest backup snapshot | Older than 26 hours | Telegram |
 | Last monthly restore test | Older than 35 days or failed | Telegram |
 | PostgreSQL connections | Over 80% of `max_connections` | Telegram |
+| Hostinger malware scanner findings (if installed, D13) | Any finding | Weekly manual review in hPanel; treat as incident |
 
 Application crash alerts already exist in `school-erp` (Telegram error alerts and optional email). Each school's alerts must name the school.
 

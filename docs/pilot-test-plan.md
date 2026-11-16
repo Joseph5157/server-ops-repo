@@ -28,6 +28,9 @@ Status: draft. Run on the pilot VPS with **fictional demo data only**. No real s
 | T12 | Secret rotation | Rotating one school's database password and secret key causes no downtime beyond a restart | No |
 | T13 | Capacity | Measured memory and CPU per school recorded; [capacity](capacity.md) updated | Yes |
 | T14 | SSH hardening safety | Key login works after DevSec; Hostinger console tested | Yes |
+| T15 | Firewall layers | From outside only 22, 80, 443 answer; Hostinger firewall and UFW rules match | Yes |
+| T16 | Move a school | One fictional school moved to a second disposable VPS with [move-school](../runbooks/move-school.md), data intact | No |
+| T17 | Plan upgrade (optional) | Measure actual downtime of a KVM plan upgrade on the disposable VPS | No |
 
 ## Exit criteria
 

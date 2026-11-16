@@ -15,7 +15,9 @@ We copy **patterns**, not code, and pin anything we adopt. Record the version re
 | [Uptime Kuma](https://github.com/louislam/uptime-kuma) | Uptime and certificate checks | Planned (ADR 0006) |
 | Dokploy, Coolify, Kamal | How self-hosted platforms organise per-app stacks | Comparison only |
 | Hostinger official MCP (`hostinger-api-mcp`), Hostinger Agent Skills | VPS operations from Claude Code | Use with tier rules (ADR 0002) |
-| vps-forge | VPS bootstrap ideas | Evaluate on disposable VPS |
+| vps-forge | Hardening ideas, lockout safeguards, fail2ban, Docker network rules | Evaluate on disposable VPS; reference only (ADR 0009) |
+| vps-setup-skill | Guided fresh-VPS setup; verifies key login before disabling passwords | Reference only (ADR 0009) |
+| Hostinger support pages | Snapshots, backups, upgrades, firewall, locations, malware scanner | Summarised in [hostinger-kvm.md](hostinger-kvm.md) |
 
 ## Skills for agents
 

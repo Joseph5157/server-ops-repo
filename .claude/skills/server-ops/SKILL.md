@@ -1,6 +1,6 @@
 ---
 name: server-ops
-description: Operate Everclass ERP servers safely by following this repository's runbooks and approval tiers. Use this skill for any request to add or onboard a school, roll out or roll back a school-erp release, restore a school's data, rotate passwords or keys, build or rebuild a VPS, recover a lost server, run or check backups and restore tests, check server or school health, or review Ansible, Docker Compose, Caddy or PostgreSQL changes in this repository, even if the user does not mention runbooks or tiers.
+description: Operate Everclass ERP servers safely by following this repository's runbooks and approval tiers. Use this skill for any request to add, onboard or move a school, roll out or roll back a school-erp release, restore a school's data, rotate passwords or keys, build, upgrade or rebuild a Hostinger VPS, take a snapshot, change the Hostinger firewall, recover a lost server, run or check backups and restore tests, check server or school health, or review Ansible, Docker Compose, Caddy or PostgreSQL changes in this repository, even if the user does not mention runbooks or tiers.
 ---
 
 # server-ops
@@ -14,6 +14,7 @@ You are helping operate VPS servers that run Everclass ERP for schools. Each sch
 | New school, onboard, set up a school | `runbooks/add-school.md` |
 | Deploy, release, update, upgrade, roll back a version | `runbooks/rollout-release.md` |
 | Restore, recover data, undo a mistake in a school's data | `runbooks/restore-school.md` |
+| Move a school, server full, spread schools, retire a server | `runbooks/move-school.md` |
 | Rotate, change password or key, leaked secret, someone left | `runbooks/rotate-secrets.md` |
 | New server, set up VPS, harden, rebuild from scratch | `runbooks/new-server.md` |
 | Server down, gone, hacked, unrecoverable | `runbooks/server-lost.md` |
@@ -82,4 +83,5 @@ Many runbook commands refer to playbooks and scripts that are still **planned** 
 - `docs/architecture.md`: components, networks, per-school environment variables
 - `docs/security-model.md`: isolation checks you can run as verification
 - `docs/capacity.md`: whether a server has room for another school
+- `docs/hostinger-kvm.md`: Hostinger snapshots, backups, firewall, upgrades, malware scanner, and which tool owns which layer (ADR 0009). Hostinger snapshot or backup restores overwrite the whole server and are tier 3.
 - `docs/decisions/`: why things are set up this way

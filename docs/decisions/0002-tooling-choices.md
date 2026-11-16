@@ -11,6 +11,7 @@
 | Hostinger Agent Skills | Use | Read the skill source before installing; pin the version. |
 | DevSec Ansible (`devsec.hardening`) | Use after configuration review | Review every variable that changes SSH, PAM, sysctl and kernel modules. Confirm key login and Hostinger console access before applying SSH hardening. |
 | vps-forge | Evaluate on a disposable VPS first | Record what it changes; adopt only the parts we can reproduce in our own Ansible. |
+| vps-setup-skill | Reference only | Cross-check our SSH order (verify key login before disabling passwords). Not run on school servers (ADR 0009). |
 | Docker Compose | Preferred starting deployment | One platform stack and one stack per school (ADR 0001). |
 | Claude Code / Codex | Reviews, configuration and controlled operations | Bound by the approval tiers in `AGENTS.md`. |
 | Sentry `django-access-review` skill | Use (in `school-erp`) | For IDOR review inside a school: teacher to another section, guardian to another child, revoked access. |

@@ -49,7 +49,7 @@ See [docs/architecture.md](docs/architecture.md) and [ADR 0001](docs/decisions/0
 |---|---|---|
 | `AGENTS.md`, `CLAUDE.md` | Rules for Claude Code and Codex | Draft |
 | `.claude/skills/server-ops/` | Claude Code skill that follows the runbooks | Draft |
-| `docs/` | Architecture, capacity, security model, pilot test plan, open decisions, references | Draft |
+| `docs/` | Architecture, capacity, Hostinger KVM plan, security model, pilot test plan, open decisions, references | Draft |
 | `docs/decisions/` | Architecture decision records (ADRs) | Proposed |
 | `runbooks/` | Step-by-step operating procedures | Draft |
 | `ansible/` | Inventory, roles and playbooks | Planned |
@@ -61,10 +61,11 @@ See [docs/architecture.md](docs/architecture.md) and [ADR 0001](docs/decisions/0
 ## Start here
 
 1. [Architecture](docs/architecture.md)
-2. [Decision records](docs/decisions/)
-3. [Open decisions](docs/open-decisions.md): what the owner still needs to decide
-4. [Pilot test plan](docs/pilot-test-plan.md): what must pass before any real school moves
-5. [Runbooks](runbooks/)
+1. [Hostinger KVM plan](docs/hostinger-kvm.md)
+1. [Decision records](docs/decisions/)
+1. [Open decisions](docs/open-decisions.md): what the owner still needs to decide
+1. [Pilot test plan](docs/pilot-test-plan.md): what must pass before any real school moves
+1. [Runbooks](runbooks/)
 
 ## Hard rules
 
