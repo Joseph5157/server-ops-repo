@@ -17,7 +17,7 @@ Student, guardian and staff records; attendance; results; guardian access grants
 | Teacher or guardian over-reaching inside a school | Existing Django authorization; review with Sentry `django-access-review`; IDOR tests |
 | Secret leak through Git | No plain secrets in Git (ADR 0007); `.gitignore`; review every PR |
 | Lost backups or keys | Off-server encrypted backups; two key holders (ADR 0007) |
-| Ransomware or a compromised server deleting backups | Bucket key without delete permission where the provider allows (or object lock); `forget/prune` run separately by the owner |
+| Ransomware or a compromised server deleting backups | The server's bucket key can write but not delete (append-only, or object lock where the provider supports it). Because `restic forget --prune` needs delete rights, the owner runs pruning separately with a different key kept off the server. |
 | AI agent mistake | Approval tiers (ADR 0008) |
 | Hostinger account takeover | Two-factor authentication on Hostinger and GitHub; API token kept off servers |
 | Noisy neighbour (one school overloading) | Container memory limits; monitoring |

@@ -26,14 +26,14 @@ Every action falls into one tier. When unsure, treat it as the next tier up.
 | Tier | What | Examples | Rule |
 |---|---|---|---|
 | **0: Read** | Inspect only | `docker ps`, logs, `df -h`, `restic snapshots`, `ansible-playbook --check --diff`, reading files | Do freely |
-| **1: Reversible change** | Changes that can be undone quickly and touch no data | Restarting one school's app container, editing docs, opening a draft PR, running a playbook in `--check` mode | State the plan in one line, then do it |
-| **2: Controlled change** | Changes to a live server or school | Applying a playbook, adding a school, rolling out a release, rotating a secret, changing firewall or SSH settings | Show the exact commands and the expected result, wait for explicit owner approval, then follow the runbook step by step |
+| **1: Reversible change** | Changes that can be undone quickly, touch no data and cause no downtime for a school | Editing docs, opening a draft PR, running a playbook in `--check` mode, restarting one school's app container **outside school hours** | State the plan in one line, then do it |
+| **2: Controlled change** | Changes to a live server or school | Applying a playbook, adding a school, rolling out a release, rotating a secret, changing firewall or SSH settings, restarting any school during school hours (08:00–16:00 IST on working days) | Show the exact commands and the expected result, wait for explicit owner approval, then follow the runbook step by step |
 | **3: Destructive** | Anything that can lose data or access | Dropping a database or volume, `restic forget/prune`, deleting a VPS or snapshot, rebuilding a VPS, removing a school, restoring over existing data, disabling backups | Never run. Prepare the commands and the checklist, then hand them to the owner to run |
 
 Also stop and ask whenever:
 
 - a command would affect more than one school at once
-- a backup is older than 26 hours or the last restore test failed
+- a backup is older than 26 hours, or the last restore test failed or is older than 35 days
 - the server state differs from what this repository describes (configuration drift)
 
 ## How to work

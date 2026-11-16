@@ -23,7 +23,7 @@ Use when the VPS is gone, corrupted, compromised or unrecoverable. Highest tier:
 
 ## Verify
 
-- Every school's login page loads with a valid certificate.
+- Every school's `https://<domain>/accounts/login/` returns 200 with a valid certificate.
 - Each school administrator confirms the latest data (and is told the data-loss window, up to 24 hours).
 - Isolation checks pass.
 

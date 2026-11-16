@@ -20,7 +20,7 @@ Hostinger KVM 2: 2 vCPU, 8 GB RAM, 100 GB NVMe.
 |---|---|---|
 | 8 | ~5.8 GB, comfortable | ~4.8 GB |
 | 12 | ~7.2 GB, tight | ~5.8 GB, comfortable |
-| 16 | too much | ~6.9 GB, tight |
+| 16 | too much | ~6.7 GB, tight |
 | 20 | too much | ~7.6 GB, use KVM 4 |
 
 **Working limits:** about 10–12 schools comfortably, about 15–18 with tuning, use a KVM 4 or a second server for 20.

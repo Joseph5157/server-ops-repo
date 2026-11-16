@@ -30,13 +30,14 @@ Highest tier: **T2**. Time: about 30 minutes plus data setup.
    - start `school-<slug>`, run `migrate`, `collectstatic`
    - regenerate the Caddyfile and reload Caddy
    - add Uptime Kuma checks
-5. **[T2]** Create the school's first administrator on the server: `docker compose -p school-<slug> exec web python manage.py createsuperuser`. Hand the credentials to the school through an agreed secure channel, never chat or email in plain text.
-6. **[T1]** School data: follow `school-erp-go-to-market/docs/implementation/` (initial configuration, Excel import). That is the school's work with our help, not a server task.
-7. **[T2]** Run a backup now: `backup/backup-all.sh` (planned).
+5. **[T2]** Create the operator's own superuser for this school (kept by us, not given to the school): `docker compose -p school-<slug> exec web python manage.py createsuperuser`. Store its password in the vault.
+6. **[T2]** Create the school's administrator as a **normal user in the School Administrators group**, not as a superuser: sign in to `https://<domain>/admin/` with the operator superuser, add the user, add them to **School Administrators**, leave *superuser* and *staff* unticked. That group holds every app permission (`school-erp` `docs/PERMISSIONS.md`) without giving the school Django admin access. Hand the credentials over through an agreed secure channel, never chat or email in plain text, and ask the administrator to change the password at first sign-in.
+7. **[T1]** School data: follow `school-erp-go-to-market/docs/implementation/` (initial configuration, Excel import). That is the school's work with our help, not a server task.
+8. **[T2]** Run a backup now: `backup/backup-all.sh` (planned).
 
 ## Verify
 
-- `https://<domain>` shows the login page with a valid certificate.
+- `https://<domain>/accounts/login/` returns 200 with a valid certificate.
 - **[T0]** Isolation: from `school-<slug>`, connecting to another school's database fails (security model check 1).
 - Uptime Kuma shows the school green; a Telegram test alert names `<slug>`.
 - `restic snapshots` includes `db_<slug>`.

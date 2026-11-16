@@ -40,13 +40,13 @@ Status: draft, based on [ADR 0001](decisions/0001-design-b-app-per-school-shared
 | Caddy | server | Routes from `schools/<server>.yml` ([ADR 0005](decisions/0005-caddy-reverse-proxy.md)) |
 | PostgreSQL | server | One database and one login per school ([ADR 0003](decisions/0003-stay-on-postgresql.md)) |
 | Everclass `web` container | school | Gunicorn; image `ghcr.io/joseph5157/school-erp:<tag>` |
-| Scheduled jobs | school | `purge_security_events`, `expire_import_batches`; `refresh_demo_school` on demo only |
+| Scheduled jobs | school | `clearsessions`, `purge_security_events`, `expire_import_batches`; `refresh_demo_school` on demo only ([stacks](../stacks/README.md)) |
 | Backup job | server | restic, per-school dumps ([ADR 0004](decisions/0004-backups-restic-s3.md)) |
 | Monitoring | server | Uptime Kuma + host checks + external check ([ADR 0006](decisions/0006-lightweight-monitoring.md)) |
 
 ## Request flow
 
-1. A teacher opens `school-a.<domain>`.
+1. A teacher opens `school-a.<domain>` (sign-in page: `/accounts/login/`).
 2. Caddy terminates HTTPS and forwards to `school-a`'s `web` container only.
 3. School A's container reads its own `.env`: its own secret key and database login.
 4. The login `app_school_a` can connect only to `db_school_a`; PostgreSQL rejects any other database.
@@ -91,4 +91,4 @@ Variables `school-erp` reads (values are placeholders here):
 ## Prerequisites outside this repository
 
 - `school-erp`: a production Dockerfile (WeasyPrint libraries, Noto fonts), a health endpoint or use of the login page, and CI that publishes tagged images.
-- Confirm whether any uploaded files (for example the school logo) are stored on disk; if so, add a volume and back it up.
+- No media volume is needed: the school logo is stored in the database (`SchoolLogo.image` is a `BinaryField`), so `pg_dump` covers it. Re-check this if a future release adds file uploads.

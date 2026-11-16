@@ -35,7 +35,7 @@ Production stays on **Railway**. This repository supports a **pilot** on a Hosti
      ┌─────────────┼─────────────┐
  school-a.app  school-b.app  school-c.app     ← same Everclass image, own .env
      └─────────────┼─────────────┘
-          PostgreSQL 17 (one server)
+          PostgreSQL 16 (one server)
         db_school_a · db_school_b · db_school_c   ← own database and own login each
                    │
        restic → encrypted off-server backups (S3-compatible)

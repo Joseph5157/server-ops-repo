@@ -19,7 +19,8 @@ backup/
 | PostgreSQL roles | `pg_dumpall --roles-only` | Recreate school logins |
 | School `.env` files | restic, encrypted | Needed to bring a school back |
 | Caddy data (certificates) | restic | Faster recovery; certificates can also be re-issued |
-| School uploaded files, if any | restic | Confirm first whether the school logo is stored as a file |
+
+School logos are stored in the database (`SchoolLogo.image`), so the database dump already includes them. No media files are stored on disk today.
 
 ## Rules
 
@@ -27,7 +28,7 @@ backup/
 - A run that fails sends a Telegram alert.
 - Monitoring alerts if the newest snapshot is older than 26 hours.
 - `restic forget --prune` is tier 3: owner runs it.
-- Restores always go to a new database name first, never over the live one.
+- Restores always go to a new database name first, never over the live one (exception: rebuilding a lost server, where it does not exist yet).
 
 ## Inspiration (patterns only, not adopted)
 

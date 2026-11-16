@@ -30,8 +30,17 @@ PostgreSQL publishes **no port** to the internet. Only Caddy publishes 80 and 44
 - Image: `ghcr.io/joseph5157/school-erp:<release-tag>`, the same image for every school; only the `.env` differs.
 - Process: Gunicorn, 2 workers (or 1 worker + threads to fit more schools; see capacity).
 - Memory limit set per container so one school cannot starve the others.
-- Health check on the login page.
-- Scheduled jobs per school (cron or a small scheduler container): `purge_security_events`, `expire_import_batches`, and `refresh_demo_school` on the demo school only.
+- Health check: `GET /accounts/login/` returns 200 (Django's own `ALLOWED_HOSTS` must include the host used by the check).
+- Scheduled jobs per school (cron or a small scheduler container), proposed times in IST:
+
+  | Job | When | Why |
+  |---|---|---|
+  | `clearsessions` | daily 02:30 | Sessions are stored in the database; without this `django_session` grows forever |
+  | `purge_security_events` | daily 02:45 | Security audit retention |
+  | `expire_import_batches` | hourly | Expire abandoned Excel import previews |
+  | `refresh_demo_school` | daily 05:00, **demo school only** | Keep the demo current |
+
+  Confirm the times and frequency with the `school-erp` team; Railway's current schedule is the reference.
 - Logs to Docker's json-file driver with rotation (size cap per container).
 
 ## Prerequisite in school-erp

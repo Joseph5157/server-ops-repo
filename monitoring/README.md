@@ -13,7 +13,7 @@ monitoring/
 
 | Check | Threshold | Alert |
 |---|---|---|
-| Each school login page | Down for 2 checks (2 minutes) | Telegram |
+| Each school login page `https://<domain>/accounts/login/` (expect HTTP 200) | Down for 2 checks (2 minutes) | Telegram |
 | HTTPS certificate expiry | Under 14 days | Telegram |
 | Disk use | Over 80% | Telegram |
 | Memory available | Under 10% for 10 minutes | Telegram |

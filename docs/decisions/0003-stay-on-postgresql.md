@@ -10,13 +10,13 @@ MySQL or MariaDB was suggested as an alternative for efficiency.
 ## Findings in `school-erp`
 
 - 12 migration files install **PL/pgSQL triggers** that enforce append-only rules (attendance, results, guardian access, teacher assignments).
-- About **56 conditional unique constraints** (`UniqueConstraint(condition=...)`), such as one active enrollment per student. MySQL and MariaDB do not support these; Django skips them silently, so duplicates could appear.
-- 47 check constraints that would need re-testing.
+- About **28 conditional unique constraints** (`UniqueConstraint(condition=...)`), such as one active enrollment per student. MySQL and MariaDB do not support these; Django skips them silently, so duplicates could appear.
+- About 46 check constraints that would need re-testing.
 - The test suite is verified on PostgreSQL.
 
 ## Decision
 
-Keep PostgreSQL. Use the major version matching Railway production (confirm before building), currently expected to be PostgreSQL 17.
+Keep PostgreSQL. Use **PostgreSQL 16**, the version `school-erp` CI and every phase closeout are tested on (`.github/workflows/ci.yml`). Confirm Railway production matches. Upgrading the major version is a separate, deliberate change: test it in `school-erp` CI first.
 
 ## Consequences
 

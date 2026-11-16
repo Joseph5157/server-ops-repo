@@ -4,7 +4,10 @@
 .vault_pass*
 *.retry
 *.dump
-*.sql
+*.pgdump
+*.backup
+dumps/
+*-dump.sql
 *.sql.gz
 secrets/
 .DS_Store

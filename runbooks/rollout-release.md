@@ -30,7 +30,7 @@ Each wave needs owner approval.
 
 ## Verify
 
-- Login page loads; sign in with the school's test or admin account if agreed.
+- `https://<domain>/accounts/login/` returns 200; sign in with the school's test or admin account if agreed.
 - `docker compose -p school-<slug> logs --since 10m web` shows no errors.
 - `python manage.py showmigrations | grep '\[ \]'` returns nothing.
 - Uptime Kuma green; no Telegram crash alerts for 30 minutes.
