@@ -1,0 +1,10 @@
+.env
+*.env
+!*.env.example
+.vault_pass*
+*.retry
+*.dump
+*.sql
+*.sql.gz
+secrets/
+.DS_Store
